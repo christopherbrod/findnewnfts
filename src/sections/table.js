@@ -21,24 +21,68 @@ import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import ControlledOpenSelect from "./dropdown";
+import { Box } from "@material-ui/core";
+import { flexbox } from "@material-ui/system";
 
-function createData(name, floorPrice, fiveMinTransactionGrowth, fiveMinVolumeGrowth, nftPriceGrowth, averageNftPrice) {
-  return { name, floorPrice, fiveMinTransactionGrowth, fiveMinVolumeGrowth, nftPriceGrowth, averageNftPrice };
+function createData(
+  name,
+  floorPrice,
+  fiveMinTransactionGrowth,
+  fiveMinVolumeGrowth,
+  nftPriceGrowth,
+  averageNftPrice
+) {
+  return {
+    name,
+    floorPrice,
+    fiveMinTransactionGrowth,
+    fiveMinVolumeGrowth,
+    nftPriceGrowth,
+    averageNftPrice,
+  };
 }
 
 const rows = [
-  createData("Azuki", 305 + "%", 3.7 + "%", 67 + " ETH", 4.3 + " ETH", 4.9 + " ETH"),
-  createData("Crypto Punks", 452 + "%", 25.0 + "%", 51 + " ETH", 4.9 + " ETH", 4.9 + " ETH"),
+  createData(
+    "Azuki",
+    9.4 + " ETH",
+    22.0 + "%",
+    18 + "%",
+    14 + "%",
+    13.9 + " ETH"
+  ),
+  createData(
+    "Crypto Punks",
+    80 + " ETH",
+    -3.0 + "%",
+    -7 + "%",
+    -2 + "%",
+    85.4 + " ETH"
+  ),
   createData(
     "Bored Ape Yacht Club",
-    262 + "%",
-    16.0 + "%",
-    24 + " ETH",
-    6.0 + " ETH",
-    4.9 + " ETH"
+    106.9 + " ETH",
+    -16.0 + "%",
+    7 + "%",
+    4 + "%",
+    116.9 + " ETH"
   ),
-  createData("Chainrunners", 159 + "%", 6.0 + "%", 24 + " ETH", 4.0 + " ETH", 4.9 + " ETH"),
-  createData("Yeti Town NFT", 356 + "%", 16.0 + "%", 49 + " ETH", 3.9 + " ETH", 4.9 + " ETH"),
+  createData(
+    "Chainrunners",
+    0.79 + " ETH",
+    -5.0 + "%",
+    -7 + "%",
+    -4 + "%",
+    0.92 + " ETH"
+  ),
+  createData(
+    "Yeti Town NFT",
+    0.15 + " ETH",
+    24.0 + "%",
+    17 + "%",
+    22 + "%",
+    0.21 + " ETH"
+  ),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -74,11 +118,36 @@ const headCells = [
     disablePadding: true,
     label: "NFT Collection",
   },
-  { id: "floorPrice", numeric: true, disablePadding: false, label: "Floor Price" },
-  { id: "fiveMinTransactionGrowth", numeric: true, disablePadding: false, label: "5 min Transaction Growth" },
-  { id: "fiveMinVolumeGrowth", numeric: true, disablePadding: false, label: "5 min Volume Growth" },
-  { id: "nftPriceGrowth", numeric: true, disablePadding: false, label: "5 min Price Growth" },
-  { id: "averageNftPrice", numeric: true, disablePadding: false, label: "Average NFT Price" },
+  {
+    id: "floorPrice",
+    numeric: true,
+    disablePadding: false,
+    label: "Floor Price",
+  },
+  {
+    id: "fiveMinTransactionGrowth",
+    numeric: true,
+    disablePadding: false,
+    label: "5 min Transaction Growth",
+  },
+  {
+    id: "fiveMinVolumeGrowth",
+    numeric: true,
+    disablePadding: false,
+    label: "5 min Volume Growth",
+  },
+  {
+    id: "nftPriceGrowth",
+    numeric: true,
+    disablePadding: false,
+    label: "5 min Price Growth",
+  },
+  {
+    id: "averageNftPrice",
+    numeric: true,
+    disablePadding: false,
+    label: "Average NFT Price",
+  },
 ];
 
 function EnhancedTableHead(props) {
@@ -97,11 +166,25 @@ function EnhancedTableHead(props) {
 
   return (
     <TableHead>
-      < ControlledOpenSelect />
+      <Box
+        sx={{
+          fontSize: 22,
+          fontWeight: 700,
+          m: 2,
+          p: 2,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        display="flex"
+      >
+        NFT Stats 🚀
+        <ControlledOpenSelect />
+      </Box>
+
       <TableRow>
         <TableCell>
-
-        {/* <TableCell padding="checkbox"> */}
+          {/* <TableCell padding="checkbox"> */}
           {/* <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
@@ -109,7 +192,7 @@ function EnhancedTableHead(props) {
             inputProps={{ "aria-label": "select all desserts" }}
           /> */}
         </TableCell>
-        
+
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -130,7 +213,6 @@ function EnhancedTableHead(props) {
               ) : null}
             </TableSortLabel>
           </TableCell>
-
         ))}
       </TableRow>
     </TableHead>
@@ -167,57 +249,55 @@ const useToolbarStyles = makeStyles((theme) => ({
   },
 }));
 
-const EnhancedTableToolbar = (props) => {
-  const classes = useToolbarStyles();
-  const { numSelected } = props;
+// const EnhancedTableToolbar = (props) => {
+//   const classes = useToolbarStyles();
+//   const { numSelected } = props;
+//   return (
+//     // <Toolbar
+//     //   className={clsx(classes.root, {
+//     //     [classes.highlight]: numSelected > 0,
+//     //   })}
+//     // >
+//     //   {numSelected > 0 ? (
+//     //     <Typography
+//     //       className={classes.title}
+//     //       color="inherit"
+//     //       variant="subtitle1"
+//     //       component="div"
+//     //     >
+//     //       {numSelected} selected
+//     //     </Typography>
+//     //   ) : (
+//     //     <Typography
+//     //       className={classes.title}
+//     //       variant="h6"
+//     //       id="tableTitle"
+//     //       component="div"
+//     //     >
+//     //       NFT Stats 🚀
+//     //     </Typography>
+//     //   )}
+//       {/*
+//       {numSelected > 0 ? (
+//         <Tooltip title="Delete">
+//           <IconButton aria-label="delete">
+//             <DeleteIcon />
+//           </IconButton>
+//         </Tooltip>
+//       ) : (
+//         <Tooltip title="Filter list">
+//           <IconButton aria-label="filter list">
+//             <FilterListIcon />
+//           </IconButton>
+//         </Tooltip>
+//       )} */}
+//     </Toolbar>
+//   );
+// };
 
-  return (
-
-    <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
-      {numSelected > 0 ? (
-        <Typography
-          className={classes.title}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography
-          className={classes.title}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          NFT Stats 🚀
-        </Typography>
-      )}
-{/* 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )} */}
-    </Toolbar>
-  );
-};
-
-EnhancedTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-};
+// EnhancedTableToolbar.propTypes = {
+//   numSelected: PropTypes.number.isRequired,
+// };
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -308,7 +388,7 @@ export default function EnhancedTable() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
           <Table
             className={classes.table}
@@ -336,7 +416,7 @@ export default function EnhancedTable() {
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, row.name)}
-                    //   role="checkbox"
+                      //   role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
@@ -357,8 +437,12 @@ export default function EnhancedTable() {
                         {row.name}
                       </TableCell>
                       <TableCell align="right">{row.floorPrice}</TableCell>
-                      <TableCell align="right">{row.fiveMinTransactionGrowth}</TableCell>
-                      <TableCell align="right">{row.fiveMinVolumeGrowth}</TableCell>
+                      <TableCell align="right">
+                        {row.fiveMinTransactionGrowth}
+                      </TableCell>
+                      <TableCell align="right">
+                        {row.fiveMinVolumeGrowth}
+                      </TableCell>
                       <TableCell align="right">{row.nftPriceGrowth}</TableCell>
                       <TableCell align="right">{row.averageNftPrice}</TableCell>
                     </TableRow>
@@ -382,10 +466,10 @@ export default function EnhancedTable() {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
+      {/* <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
-      />
+      /> */}
     </div>
   );
 }

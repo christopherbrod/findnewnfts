@@ -8,7 +8,7 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   button: {
-    display: "block",
+    display: "flex",
     marginTop: theme.spacing(2),
   },
   formControl: {

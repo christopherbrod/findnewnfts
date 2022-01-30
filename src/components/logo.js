@@ -8,7 +8,7 @@ import logoDark from "assets/images/logo-dark.svg";
 export default function Logo({ isSticky, light, dark, ...props }) {
   return (
     <Link path="/" sx={styles.logo} {...props}>
-      <div sx={styles.logo}>NFTLytics</div>
+      <div sx={styles.logo}>Find New NFTs</div>
     </Link>
   );
 }

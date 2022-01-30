@@ -21,9 +21,9 @@ export default function Footer() {
         <Box sx={styles.footerInner}>
           <Box sx={styles.copyright}>
             <Logo sx={styles.logo} light />
-            <Text as="span">
+            {/* <Text as="span">
               Copyright by {new Date().getFullYear()} RedQ, Inc
-            </Text>
+            </Text> */}
           </Box>
 
           <Box as="ul" sx={styles.footerNav}>
